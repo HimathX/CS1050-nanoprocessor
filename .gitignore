@@ -1,0 +1,33 @@
+# Ignore Vivado generated files
+*.jou
+*.log
+*.str
+*.wdb
+*.bak
+*.tmp
+*.cache
+*.xml
+*.xpr
+*.Xil/
+
+# Ignore simulation files
+*.vcd
+*.vhw
+*.vst
+*.asdb
+*.saif
+*.wlf
+*.svf
+
+# Ignore test output
+*.o
+*.out
+*.bin
+
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.swn
+*.vscode/
