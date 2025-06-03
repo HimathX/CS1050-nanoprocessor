@@ -44,7 +44,6 @@ This project implements a complete 4-bit nanoprocessor system with both original
 | `XOR Ra, Rb`  | Bitwise XOR operation                   | `00 RaRaRa RbRbRb 0100` |
 | `MUL Ra, Rb`  | Multiply registers                      | `00 RaRaRa RbRbRb 0101` |
 | `CMP Ra, Rb`  | Compare registers (sets flags)          | `00 RaRaRa RbRbRb 0111` |
-| *(Additional six extended opcodes can be documented here as used in the extended design.)* |
 
 > **Note:** In the extended design, the instruction set expands to a total of 14 instructions. Six other opcodes (e.g., shift operations, immediate variants, etc.) are implemented in the full VHDL source; refer to `InstructionDecoder_Extended.vhd` for the complete encoding table.
 
@@ -73,6 +72,7 @@ _Add your FPGA board setup photos in the `images/` directory, then update paths 
 
 ## 📁 Project Structure
 
+```text
 VHDL-4bit-NanoProcessor-FPGA/
 ├── Nanoprocessor/
 │   ├── ALU.vhd
@@ -96,6 +96,7 @@ VHDL-4bit-NanoProcessor-FPGA/
 ├── NanoProcessor_Project_Report.pdf
 ├── README.md
 └── .gitignore
+```
 
 ## 🔧 Getting Started
 
@@ -107,29 +108,43 @@ VHDL-4bit-NanoProcessor-FPGA/
    ```bash
    git clone https://github.com/HimathX/VHDL-4bit-NanoProcessor-FPGA.git
    cd VHDL-4bit-NanoProcessor-FPGA
-Open Vivado → Create New Project → Add sources from Nanoprocessor/ (for original design) or Nanoprocessor-Extended/ (for extended design).
+   Open Vivado → Create New Project → Add sources from Nanoprocessor/ (for original design) or Nanoprocessor-Extended/ (for extended design).
+   
+   Specify Basys 3 (xc7a35tcpg236-1) as the target device.
+   
+   Run synthesis → implementation → generate bitstream.
+   
+   Program the FPGA with the generated .bit file.
 
-Specify Basys 3 (xc7a35tcpg236-1) as the target device.
+---
 
-Run synthesis → implementation → generate bitstream.
-
-Program the FPGA with the generated .bit file.
-
-Simulation
+## 🖥️ Simulation
 
 Use your preferred VHDL simulator (e.g., ModelSim, Vivado Simulator).
 
-Compile all .vhd files and run the testbench in Nanoprocessor/ or Nanoprocessor-Extended/ to verify functionality before FPGA programming.
+1. Compile all `.vhd` files in either `Nanoprocessor/` (original design) or `Nanoprocessor-Extended/` (extended design).  
+2. Run the corresponding testbench to verify functionality before FPGA programming:
+   - `Nanoprocessor/Testbench_NanoProcessor.vhd`
+   - `Nanoprocessor-Extended/Testbench_NanoProcessor_Extended.vhd`
 
-Documentation & Reporting
+---
 
-Refer to NanoProcessor_Project_Report.pdf for block-by-block schematics, timing diagrams, and performance analysis.
+## 📚 Documentation & Reporting
 
-Presentation slides in Presentation/ cover high-level architecture and design trade-offs.
+- Refer to `NanoProcessor_Project_Report.pdf` for:
+  - Block-by-block schematics
+  - Timing diagrams
+  - Performance analysis
+- Presentation slides in `Presentation/` cover:
+  - High-level architecture
+  - Design trade-offs
 
-📬 Contact
-For questions, feedback, or collaboration, reach out to:
+---
 
-Email: himath.nimpura@gmail.com
+📬 **Contact**  
+For questions, feedback, or collaboration, reach out to:  
+**Email:** himath.nimpura@gmail.com
 
-<div align="center"> <p>Built with ❤️ for learning computer architecture.</p> </div> ```
+<div align="center">
+  <p>Built with ❤️ for learning computer architecture.</p>
+</div>
