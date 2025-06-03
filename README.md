@@ -1,9 +1,8 @@
 # 4-Bit NanoProcessor - VHDL FPGA Implementation
 
 <div align="center">
-    ![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/21386330-207a-401a-861a-2deeeb1329ec)
+  ![NanoProcessor Hardware Setup](https://github.com/user-attachments/assets/21386330-207a-401a-861a-2deeeb1329ec)
 </div>
-
 ---
 
 <div align="center">
