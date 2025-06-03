@@ -1,8 +1,8 @@
-# 4-Bit NanoProcessor - VHDL FPGA Implementation
+![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/49593954-8c76-415b-af66-0381a8044ce6)# 4-Bit NanoProcessor - VHDL FPGA Implementation
 
 <div align="center">
-  <!-- Badge placeholder; replace URL with an appropriate shields.io badge if desired -->
-  ![Processor Architecture](https://img.shields.io/badge/4-bit–NanoProcessor-blue)
+  ![Processor Architecture](![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/2b6063a9-3536-4383-86e7-754295f7e85c)
+    )
 </div>
 
 ---
@@ -97,6 +97,7 @@ VHDL-4bit-NanoProcessor-FPGA/
 ├── README.md
 └── .gitignore
 ```
+---
 
 ## 🔧 Getting Started
 
@@ -140,10 +141,6 @@ Use your preferred VHDL simulator (e.g., ModelSim, Vivado Simulator).
   - Design trade-offs
 
 ---
-
-📬 **Contact**  
-For questions, feedback, or collaboration, reach out to:  
-**Email:** himath.nimpura@gmail.com
 
 <div align="center">
   <p>Built with ❤️ for learning computer architecture.</p>
