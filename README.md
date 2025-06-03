@@ -62,10 +62,8 @@ This project implements a complete 4-bit nanoprocessor system with both original
 ## 🖼️ Hardware Photos
 
 <p align="center">
-  ![fpga-board](https://github.com/user-attachments/assets/2c1c221b-f3fa-4e5b-b436-945683ac53a8)
-</p>![fpga-board](https://github.com/user-attachments/assets/8b230756-2b77-4639-8143-7d593f96752e)
-
-
+  <img src="https://github.com/user-attachments/assets/754b2f07-239f-41f0-b1aa-e122b5e49b2b" alt="NanoProcessor Hardware Setup" />
+</p>
 ---
 
 ## 📁 Project Structure
