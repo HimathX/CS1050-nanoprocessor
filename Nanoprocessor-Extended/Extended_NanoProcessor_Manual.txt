@@ -1,0 +1,96 @@
+Practical Operation Manual for Original NanoProcessor Circuit
+Version: Extended Design
+
+1. Reset Operation
+------------------
+Reset Button:
+- Location: Mapped to BTNU (Top button, FPGA Pin U18).
+- Action:
+  - Resets program counter (PC) to 0.
+  - Clears all registers (R0–R7) to 0000.
+  - Sets flags (Zero, Overflow, Equal, LessThan, GreaterThan) to 0.
+
+2. LED and Display Mapping
+--------------------------
+LED Indicators:
+LED     Function           FPGA Pin
+LED3-0  Data_7             U16, E19, U19, V19
+LED7-4  Data_6             W18, U15, U14, V14
+LED15   Overflow Flag      L1
+LED14   Zero Flag          P1
+LED13   Equal Flag         U3
+LED12   LessThan Flag      P3
+LED11   GreaterThan Flag   N3
+
+Seven-Segment Display:
+- Anodes:
+  - anode[3:0]: Controls digits (FPGA Pins U2, U4, V4, W4).
+- Active Digits:
+  - Rightmost (anode[0] = 0): Displays R7.
+- Segments:
+  - S_7Seg[6:0] mapped to FPGA Pins W7, W6, U8, V8, U5, V5, U7.
+
+3. Sample Program Execution
+---------------------------
+Program Code (assembly):
+
+"101110000101", -- 0: MOVI R7,5  ; R7 ← 5 (0101)  
+"101100000011", -- 1: MOVI R6,3  ; R6 ← 3 (0011)  
+"001111100000", -- 2: ADD R7,R6  ; R7 ← 5 + 3 = 8 (1000)  
+"001101110001", -- 3: SUB R6,R7  ; R6 ← 3 - 8 = -5 (1011)  
+"001111100101", -- 4: MUL R7,R6  ; R7 ← 8 * (-5) = -40 → Truncated to 8 (1000)  
+"001101110011", -- 5: OR R6,R7   ; R6 ← 1011 OR 1000 = 1011 (-5)  
+"001111100100", -- 6: XOR R7,R6  ; R7 ← 1000 XOR 1011 = 0011 (3)  
+"001111000111"  -- 7: CMP R7,R6  ; Compare 3 (0011) vs -5 (1011) → GT=1  
+
+Step-by-Step Behavior:
+
+Step    R7     R6     LEDs (R7/R6)   Flags (Ovr/Zero/EQ/LT/GT)
+--------------------------------------------------------------
+Reset   0000   0000   0000/0000      0/1/0/0/0
+0       0101   0000   0101/0000      0/1/0/0/0
+1       0101   0011   0101/0011      0/1/0/0/0
+2       1000   0011   1000/0011      1/0/0/0/0 (Overflow!)
+3       1000   1011   1000/1011      0/0/0/0/0
+4       1000   1011   1000/1011      1/0/0/0/0 (Overflow!)
+5       1000   1011   1000/1011      0/0/0/0/0
+6       0011   1011   0011/1011      0/0/0/0/0
+7       0011   1011   0011/1011      0/1/0/0/1 (Zero flag/GT flag)
+
+Note:
+Some flag LEDs may show one clock tick early because the ALU works asynchronously.
+
+4. Critical Notes
+-----------------
+Overflow Detection:
+- Occurs for ADD, SUB, and MUL if the result exceeds the 4-bit signed range (–8 to +7).
+- Example: ADD R7,R6 (5 + 3 = 8) triggers overflow (valid range: –8 to +7).
+
+Signed Arithmetic:
+- SUB R6,R7 (3 – 8) produces –5 (1011).
+- CMP uses signed comparison: 3 > –5 → GreaterThan = 1.
+
+Display Behavior:
+- Negative values show as two’s complement on LEDs but as hexadecimal on the 7-segment display.
+- Example: 1011 (–5) displays as B on the 7-segment.
+
+5. Operational Instructions
+---------------------------
+Programming the FPGA:
+- Generate the .bit file in Vivado and program the BASYS3 board.
+- Verify constraints match the provided .xdc file.
+
+Testing:
+- Press Reset (BTNU) before execution.
+- Observe LED3-0 (R7) and LED7-4 (R6).
+- Monitor flags (LED15–11) for arithmetic/logic status.
+
+Troubleshooting:
+- Unexpected Flags: Ensure Reset is pressed before starting.
+- Display Issues: Check anode activation (anode[0] for R7, anode[1] for R6).
+
+End of Manual:
+--------------
+Refer to the VHDL source code for extended ALU, multiplier, and comparator logic.
+
+

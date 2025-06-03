@@ -1,0 +1,72 @@
+Practical Operation Manual for Original NanoProcessor Circuit
+Version: Base Design 
+
+1. Reset Operation
+Reset Button:
+Location: Mapped to BTNU (Top button) on BASYS3 FPGA.
+
+Function:
+- Resets the program counter (PC) to 0.
+- Clears all registers (R0-R7) to 0000.
+- Sets status flags (Zero, Overflow) to 0.
+
+2. LED Signal Mapping
+LED     Function
+LED3-0  Displays the 4-bit value of Register R7.
+LED15   Overflow flag (Lit = 1).
+LED14   Zero flag (Lit = 1).
+
+3. Seven-Segment Display Mapping
+Display: Rightmost digit (Anode = 1110).
+Function: Shows hexadecimal value of Register R7 (e.g., 6 = 0110 → "6").
+
+5. Sample Program Execution
+Program Code:
+"101110000000", -- 0: MOVI R7,0  ; R7 ← 0  
+"100010000001", -- 1: MOVI R1,1  ; R1 ← 1  
+"100100000010", -- 2: MOVI R4,2  ; R4 ← 2  
+"100110000011", -- 3: MOVI R3,3  ; R3 ← 3  
+"001110010000", -- 4: ADD R7,R1  ; R7 ← R7 + R1  
+"001110100000", -- 5: ADD R7,R4  ; R7 ← R7 + R4  
+"001110110000", -- 6: ADD R7,R3  ; R7 ← R7 + R3  
+"110000000100"  -- 7: JZR R0,4   ; Jump to address 4 (always)  
+
+Expected Behavior:
+Step     Action                        R7 (4-bit)  LED3-0  Zero Flag  Overflow Flag
+Reset    Initialize                    0000        0000    0          0
+0        MOVI R7,0                     0000        0000    0          0
+1        MOVI R1,1                     0000        0000    0          0
+2        MOVI R4,2                     0000        0000    0          0
+3        MOVI R3,3                     0000        0000    0          0
+4        ADD R7,R1 → 0+1=1             0001        0001    0          0
+5        ADD R7,R4 → 1+2=3             0011        0011    0          0
+6        ADD R7,R3 → 3+3=6             0110        0110    0          0
+7        JZR R0,4 → Jump to 4          0110        0110    0          0
+4*       ADD R7,R1 → 6+1=7             0111        0111    0          0
+5*       ADD R7,R4 → 7+2=9 (1001)      1001        1001    0          1 (Overflow)
+6*       ADD R7,R3 → 9+3=12 (1100)     1100        1100    0          1 (Overflow)
+
+Notes:
+* denotes post-loop iterations. Overflow flag triggers when arithmetic results exceed 4-bit signed range (-8 to +7).
+The program loops indefinitely (addresses 4 → 5 → 6 → 7 → 4).
+
+6. Practical Instructions
+Programming the FPGA:
+- Generate the bitstream file (.bit) in Vivado.
+- Connect the BASYS3 board and program it via Hardware Manager.
+
+Running the Program:
+- Press BTNU (Reset) before starting.
+- Observe LED3-0 for R7’s value and LED15/LED14 for flags.
+- The 7-segment display updates in real-time with R7’s hexadecimal value.
+
+7. Error Handling
+Unexpected Values:
+- Press Reset (BTNU) to reinitialize.
+- Verify the program in ROM matches the sample code.
+
+Overflow Flag:
+- Triggers only for arithmetic operations (ADD). Ignore during MOVI/JZR.
+
+End of Manual
+Refer to the VHDL source code for component-level details.
