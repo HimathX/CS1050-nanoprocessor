@@ -61,11 +61,9 @@ This project implements a complete 4-bit nanoprocessor system with both original
 
 ## 🖼️ Hardware Photos
 
-_Add your FPGA board setup photos in the `images/` directory, then update paths below if needed._
-
-<div align="center">
-  ![BASYS 3 Board Setup](images/basys3-setup.jpg)
-</div>
+<p align="center">
+  ![fpga-board](https://github.com/user-attachments/assets/2c1c221b-f3fa-4e5b-b436-945683ac53a8)
+</p>
 
 ---
 
