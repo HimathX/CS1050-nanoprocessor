@@ -1,8 +1,7 @@
-![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/49593954-8c76-415b-af66-0381a8044ce6)# 4-Bit NanoProcessor - VHDL FPGA Implementation
+# 4-Bit NanoProcessor - VHDL FPGA Implementation
 
 <div align="center">
-  ![Processor Architecture](![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/2b6063a9-3536-4383-86e7-754295f7e85c)
-    )
+  ![Processor Architecture](![b31a66bb47d3f056444aec6f792bd33e](https://github.com/user-attachments/assets/2b6063a9-3536-4383-86e7-754295f7e85c))
 </div>
 
 ---
