@@ -1,8 +1,10 @@
 # 4-Bit NanoProcessor - VHDL FPGA Implementation
 
 <div align="center">
-  ![NanoProcessor Hardware Setup](https://github.com/user-attachments/assets/21386330-207a-401a-861a-2deeeb1329ec)
+  <!-- Badge placeholder; replace URL with an appropriate shields.io badge if desired -->
+  ![Processor Architecture](https://img.shields.io/badge/4-bit–NanoProcessor-blue)
 </div>
+
 ---
 
 <div align="center">
