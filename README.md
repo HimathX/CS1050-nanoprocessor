@@ -2,7 +2,7 @@
 
 <div align="center">
   <!-- Badge placeholder; replace URL with an appropriate shields.io badge if desired -->
-  ![Processor Architecture](https://img.shields.io/badge/4-bit–NanoProcessor-blue)
+  ![Processor Architecture](https://github.com/user-attachments/assets/1052bff4-1253-4833-99ed-d430e5e59048)
 </div>
 
 ---
